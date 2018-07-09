@@ -1,3 +1,5 @@
+from math import floor
+
 # "A magic index in an array A[0..n-1] is defined to be an index such that A[i] = i.
 # Given a sorted array of distinct integers,
 # write a method to find a magic index, if one exists, in array my_array
@@ -30,8 +32,13 @@ def binary_search(my_array):
         return False
     else:
         if len(my_array) >= 2:
-            if my_array[0] < 0 and my_array[-1]:
-                pass
+            var = True
+            while(var):
+                place = floor(len(my_array) / 2)
+                if my_array[place] > place:
+                    var = False
+                    # don't look above, look below
+
 
         else:
             pass
