@@ -11,6 +11,9 @@ my_array = [2, 3, 4, 5, 6]
 other_array = [1, 2, 10, 20, 30]
 some_array = [-5, -4, -3, 0, 4, 6]
 alt_array = [-5, -4, -3, 0, 1, 6]
+another_array = [0, 2, 5]
+more_array = [-1, 0, 2]
+all_arrays = [my_array, other_array, some_array, alt_array, another_array, more_array]
 
 
 def simple_solution(my_array):
@@ -33,7 +36,7 @@ def helper_binary_search(lower_bound, upper_bound, my_array):
 
     elif lower_bound + 1 == upper_bound:
         return False, -1, -1
-    
+
     elif my_array[place] > place:
         # don't look above, look below
         upper_bound = place
@@ -61,6 +64,10 @@ def binary_search(my_array):
         return False
     elif my_array[len(my_array) - 1] < len(my_array) - 1:
         return False
+    elif my_array[0] == 0:
+        return 0
+    elif my_array[-1] == len(my_array) - 1:
+        return my_array[-1]
     else:
         if len(my_array) >= 2:
             should_continue = True
@@ -84,5 +91,6 @@ def binary_search(my_array):
 
 
 # print(simple_solution(my_array))
-print(binary_search(alt_array))
+for array in all_arrays:
+    print(binary_search(array))
 
