@@ -5,10 +5,12 @@ from math import floor
 # write a method to find a magic index, if one exists, in array my_array
 
 # 2018 July 8th
+# 2018 July 22nd 
 
-my_array = [2, 3, 4, 5, 5, 5, 6]
+my_array = [2, 3, 4, 5, 6]
 other_array = [1, 2, 10, 20, 30]
-some_array = [-5, -4, -3, -3, 4]
+some_array = [-5, -4, -3, 0, 4, 6]
+alt_array = [-5, -4, -3, 0, 1, 6]
 
 
 def simple_solution(my_array):
@@ -16,6 +18,35 @@ def simple_solution(my_array):
     for value in range(0, len(my_array)):
         if my_array[value] == value:
             return value
+
+
+def helper_binary_search(lower_bound, upper_bound, my_array):
+    should_continue = True
+
+    place = floor(lower_bound + (upper_bound - lower_bound) / 2)
+
+
+    if my_array[place] == place:
+        should_continue = False
+        lower_bound = place
+        upper_bound = place
+
+    elif lower_bound + 1 == upper_bound:
+        return False, -1, -1
+    
+    elif my_array[place] > place:
+        # don't look above, look below
+        upper_bound = place
+
+    elif my_array[place] < place:
+        # look above
+        lower_bound = place
+
+
+
+
+
+    return should_continue, lower_bound, upper_bound
 
 
 def binary_search(my_array):
@@ -32,12 +63,16 @@ def binary_search(my_array):
         return False
     else:
         if len(my_array) >= 2:
-            var = True
-            while(var):
-                place = floor(len(my_array) / 2)
-                if my_array[place] > place:
-                    var = False
-                    # don't look above, look below
+            should_continue = True
+            lower = 0
+            upper = len(my_array) - 1
+            while should_continue:
+                should_continue, lower, upper = helper_binary_search(lower, upper, my_array)
+            if lower == -1:
+                return False
+            if lower == upper:
+                return lower
+
 
 
         else:
@@ -49,5 +84,5 @@ def binary_search(my_array):
 
 
 # print(simple_solution(my_array))
-print(binary_search(my_array))
+print(binary_search(alt_array))
 
