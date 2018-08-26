@@ -8,7 +8,8 @@ import time
 # tall numbers will be increasing, and no duplicates
 
 # 2018 July 8th
-# 2018 July 22nd 
+# 2018 July 22nd
+# 2018 August 26th
 
 my_array = [2, 3, 4, 5, 6]
 other_array = [1, 2, 10, 20, 30]
@@ -121,6 +122,9 @@ for num_times in range(0, num_cases):
         else:
             count_passed_test_cases += 1
     else:
+        for index in range(0, len(array)):
+            if index == array[index]:
+                assert False
         count_passed_test_cases += 1
 
 print(f"Passed {count_passed_test_cases} out of {num_cases} test cases")
