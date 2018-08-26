@@ -1,5 +1,6 @@
 from math import floor
 import random
+import time
 
 # "A magic index in an array A[0..n-1] is defined to be an index such that A[i] = i.
 # Given a sorted array of distinct integers,
@@ -81,15 +82,13 @@ def binary_search(my_array):
                 return False
             if lower == upper:
                 return lower
-
-
-
         else:
             pass
             # there is only one thing
 
-def test_cases():
-    random.seed(1)
+def make_test_array(num_times):
+    # print(time.time())
+    random.seed(num_times * 9999 * time.time())
     size_array = random.randint(3, 100)
     random_numbers = set()
     min = -50
@@ -98,12 +97,31 @@ def test_cases():
         num = random.randint(min, max)
         random_numbers.add(num)
     array = sorted(random_numbers)
-    print(array)
+    # print(array)
+    return array
 
 
-
-test_cases()
+# idk:
 # print(simple_solution(my_array))
-for array in all_arrays:
-    print(binary_search(array))
+
+# original:
+# for array in all_arrays:
+#     print(binary_search(array))
+
+print("automated test cases")
+count_passed_test_cases = 0
+num_cases = 100
+for num_times in range(0, num_cases):
+    array = make_test_array(num_times)
+    result = binary_search(array)
+    if not result == False:
+        # print(result)
+        if not array[result] == result:
+            assert False
+        else:
+            count_passed_test_cases += 1
+    else:
+        count_passed_test_cases += 1
+
+print(f"Passed {count_passed_test_cases} out of {num_cases} test cases")
 
