@@ -58,14 +58,15 @@ def binary_search(my_array):
     # and there are no duplicates
     assert(len(my_array) == len(set(my_array)))
 
-    if my_array[0] > 0:
-        return False
-    elif my_array[len(my_array) - 1] < len(my_array) - 1:
-        return False
-    elif my_array[0] == 0:
+
+    if my_array[0] == 0:
         return 0
     elif my_array[-1] == len(my_array) - 1:
         return my_array[-1]
+    elif my_array[len(my_array) - 1] < len(my_array) - 1:
+        return False
+    elif my_array[0] > 0:
+        return False
     else:
         if len(my_array) >= 2:
             should_continue = True
@@ -91,7 +92,6 @@ def make_test_array(num_times):
         num = random.randint(min, max)
         random_numbers.add(num)
     array = sorted(random_numbers)
-    print(array)
     return array
 
 
@@ -106,11 +106,15 @@ def make_test_array(num_times):
 # real code starts here:
 print("automated test cases")
 count_passed_test_cases = 0
-num_cases = 100
+num_cases = 10000
+# start timer
 for num_times in range(0, num_cases):
+    print(num_times)
     array = make_test_array(num_times)
+    print(array)
     result = binary_search(array)
-    if result != False:
+    print(result)
+    if type(result) == int:  # and result!= False
         # print(result)
         if array[result] != result:
             assert False
@@ -121,6 +125,6 @@ for num_times in range(0, num_cases):
             if index == array[index]:
                 assert False
         count_passed_test_cases += 1
-
+# end timer
 print(f"Passed {count_passed_test_cases} out of {num_cases} test cases")
 
