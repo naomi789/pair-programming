@@ -1,6 +1,6 @@
 from math import floor
 import random
-
+import time
 # "A magic index in an array A[0..n-1] is defined to be an index such that A[i] = i.
 # Given a sorted array of distinct integers,
 # write a method to find a magic index, if one exists, in array my_array
@@ -58,7 +58,6 @@ def binary_search(my_array):
     # and there are no duplicates
     assert(len(my_array) == len(set(my_array)))
 
-
     if my_array[0] == 0:
         return 0
     elif my_array[-1] == len(my_array) - 1:
@@ -108,6 +107,7 @@ print("automated test cases")
 count_passed_test_cases = 0
 num_cases = 10000
 # start timer
+start_time = time.time()
 for num_times in range(0, num_cases):
     print(num_times)
     array = make_test_array(num_times)
@@ -125,6 +125,7 @@ for num_times in range(0, num_cases):
             if index == array[index]:
                 assert False
         count_passed_test_cases += 1
+print("time to run test cases: " + str(time.time() - start_time))
 # end timer
 print(f"Passed {count_passed_test_cases} out of {num_cases} test cases")
 
