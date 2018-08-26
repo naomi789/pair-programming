@@ -114,9 +114,9 @@ num_cases = 100
 for num_times in range(0, num_cases):
     array = make_test_array(num_times)
     result = binary_search(array)
-    if not result == False:
+    if result != False:
         # print(result)
-        if not array[result] == result:
+        if array[result] != result:
             assert False
         else:
             count_passed_test_cases += 1
