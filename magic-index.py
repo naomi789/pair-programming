@@ -105,15 +105,16 @@ def make_test_array(num_times):
 # real code starts here:
 print("automated test cases")
 count_passed_test_cases = 0
-num_cases = 10000
+num_cases = 1000000
 # start timer
 start_time = time.time()
 for num_times in range(0, num_cases):
-    print(num_times)
+    if num_times % 1000 == 0:
+        print(num_times)
     array = make_test_array(num_times)
-    print(array)
+    # print(array)
     result = binary_search(array)
-    print(result)
+    # print(result)
     if type(result) == int:  # and result!= False
         # print(result)
         if array[result] != result:
