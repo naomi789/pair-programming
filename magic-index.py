@@ -1,4 +1,5 @@
 from math import floor
+import random
 
 # "A magic index in an array A[0..n-1] is defined to be an index such that A[i] = i.
 # Given a sorted array of distinct integers,
@@ -87,10 +88,21 @@ def binary_search(my_array):
             pass
             # there is only one thing
 
+def test_cases():
+    random.seed(1)
+    size_array = random.randint(3, 100)
+    random_numbers = set()
+    min = -50
+    max = 50
+    for index in range(0, size_array):
+        num = random.randint(min, max)
+        random_numbers.add(num)
+    array = sorted(random_numbers)
+    print(array)
 
 
 
-
+test_cases()
 # print(simple_solution(my_array))
 for array in all_arrays:
     print(binary_search(array))
